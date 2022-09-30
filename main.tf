@@ -1,13 +1,13 @@
 locals {
-  standard_name = var.name
-  # standard_name = "${var.name}${var.environment}"
+  name = var.name
+  # name = "${var.name}${var.environment}"
 
   cosmosdb_sql_database = concat(azurerm_cosmosdb_sql_database.sql_database.*, [null])[0]
   enable_serverless     = contains(var.cosmosdb_account.capabilities[*].name, "EnableServerless")
 }
 
 resource "azurerm_cosmosdb_sql_database" "sql_database" {
-  name                = var.override_name != "" ? var.override_name : local.standard_name
+  name                = var.override_name != "" ? var.override_name : local.name
   resource_group_name = var.resource_group.name
   account_name        = var.cosmosdb_account.name
 
