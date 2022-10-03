@@ -62,8 +62,8 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_cosmosdb_sql_database"></a> [cosmosdb\_sql\_database](#output\_cosmosdb\_sql\_database) | n/a |
-| <a name="output_cosmosdb_sql_database_name"></a> [cosmosdb\_sql\_database\_name](#output\_cosmosdb\_sql\_database\_name) | n/a |
+| <a name="output_cosmosdb_sql_database"></a> [cosmosdb\_sql\_database](#output\_cosmosdb\_sql\_database) | The Azure CosmosDB SQL Database resource. |
+| <a name="output_cosmosdb_sql_database_name"></a> [cosmosdb\_sql\_database\_name](#output\_cosmosdb\_sql\_database\_name) | The name of Azure CosmosDB SQL Database resource. |
 <!-- END_TF_DOCS -->
 
 [1]: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_sql_database
