@@ -26,14 +26,14 @@ git fetch --all --tags --prune --prune-tags \
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.24.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.1 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.25.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.24.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.25.0 |
 
 ## Modules
 
@@ -43,7 +43,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_cosmosdb_sql_database.sql_database](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_sql_database) | resource |
+| [azurerm_cosmosdb_sql_database.cosmosdb_sql_database](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cosmosdb_sql_database) | resource |
 
 ## Inputs
 
@@ -53,9 +53,9 @@ No modules.
 | <a name="input_cosmosdb_account"></a> [cosmosdb\_account](#input\_cosmosdb\_account) | (Required) The CosmosDB (formally DocumentDB) Account. | `any` | n/a | yes |
 | <a name="input_enable_autoscale_settings"></a> [enable\_autoscale\_settings](#input\_enable\_autoscale\_settings) | (Optional) Enable autoscale settings. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. | `bool` | `false` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | (Required) The name of the environment. | `string` | n/a | yes |
-| <a name="input_name"></a> [name](#input\_name) | (Required) The name of the CosmosDB SQL database. | `string` | n/a | yes |
-| <a name="input_override_name"></a> [override\_name](#input\_override\_name) | (Optional) Override the name of the resource. Under normal circumstances, it should not be used. | `string` | `""` | no |
-| <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | (Required) The name of the resource group in which the CosmosDB Account is created. Changing this forces a new resource to be created. | `any` | n/a | yes |
+| <a name="input_override_name"></a> [override\_name](#input\_override\_name) | (Optional) Override the name of the resource. Under normal circumstances, it should not be used. | `string` | `null` | no |
+| <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | (Required) The resource group in which to create the resource. | `any` | n/a | yes |
+| <a name="input_system_name"></a> [system\_name](#input\_system\_name) | (Required) The systen name which should be used for this resource. Changing this forces a new resource to be created. | `string` | n/a | yes |
 | <a name="input_throughput"></a> [throughput](#input\_throughput) | (Optional) The throughput of SQL database (RU/s). Must be set in increments of `100`. The minimum value is `400`. This must be set upon database creation otherwise it cannot be updated without a manual terraform destroy-apply. Do not set when `azurerm_cosmosdb_account` is configured with `EnableServerless` capability. Throughput has a maximum value of `1000000` unless a higher limit is requested via Azure Support. | `number` | `400` | no |
 
 ## Outputs
