@@ -1,14 +1,3 @@
-variable "name" {
-  description = "(Required) The name of the CosmosDB SQL database."
-  type        = string
-}
-
-variable "override_name" {
-  description = "(Optional) Override the name of the resource. Under normal circumstances, it should not be used."
-  default     = ""
-  type        = string
-}
-
 variable "environment" {
   description = "(Required) The name of the environment."
   type        = string
@@ -18,35 +7,49 @@ variable "environment" {
       "test",
       "prod",
     ], var.environment)
-    error_message = "Valid options are dev, test, and prod."
+    error_message = "Possible values are dev, test, and prod."
   }
 }
 
+# This `name` variable is replaced by the use of `system_name` and `environment` variables.
+# variable "name" {
+#   description = "(Required) The name which should be used for this resource. Changing this forces a new resource to be created."
+#   type        = string
+# }
+
+variable "system_name" {
+  description = "(Required) The systen name which should be used for this resource. Changing this forces a new resource to be created."
+  type        = string
+}
+
+variable "override_name" {
+  description = "(Optional) Override the name of the resource. Under normal circumstances, it should not be used."
+  default     = null
+  type        = string
+}
+
+# This `override_location` variable is not applicable in this resource.
+# variable "override_location" {
+#   description = "(Optional) Override the location of the resource. Under normal circumstances, it should not be used."
+#   default     = null
+#   type        = string
+# }
+
 variable "resource_group" {
-  description = "(Required) The name of the resource group in which the CosmosDB Account is created. Changing this forces a new resource to be created."
+  description = "(Required) The resource group in which to create the resource."
   type        = any
 }
 
 # This `resource_group_name` variable is replaced by the use of `resource_group` variable.
 # variable "resource_group_name" {
-#   description = "(Required) The name of the resource group in which the Log Analytics workspace is created. Changing this forces a new resource to be created."
+#   description = "(Required) The name of the resource group where the resource should exist. Changing this forces a new resource to be created."
 #   type        = string
 # }
 
 # This `location` variable is replaced by the use of `resource_group` variable.
 # variable "location" {
-#   description = "(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created."
+#   description = "(Required) The location where the resource should exist. Changing this forces a new resource to be created."
 #   type        = string
-# }
-
-# variable "systemaccess_developer_group_id" {
-#   description = "The object id of the Azure AD group systemaccess-<system>-developers. Gets read access to the Storage Account. To grant additional access, use azurerm_role_assignment."
-#   default     = "00000000-0000-0000-0000-000000000000"
-#   type        = string
-#   validation {
-#     condition     = can(regex("^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$", var.systemaccess_developer_group_id))
-#     error_message = "The systemaccess_developer_group_id value must be a valid globally unique identifier (GUID)."
-#   }
 # }
 
 variable "cosmosdb_account" {

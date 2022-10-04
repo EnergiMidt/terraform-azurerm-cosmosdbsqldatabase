@@ -1,15 +1,15 @@
 locals {
-  name = var.name
-  # name = "${var.name}${var.environment}"
+  name = var.override_name == null ? "${var.system_name}-${lower(var.environment)}-sqldb" : var.override_name
 
-  cosmosdb_sql_database = concat(azurerm_cosmosdb_sql_database.sql_database.*, [null])[0]
+  cosmosdb_sql_database = concat(azurerm_cosmosdb_sql_database.cosmosdb_sql_database.*, [null])[0]
   enable_serverless     = contains(var.cosmosdb_account.capabilities[*].name, "EnableServerless")
 }
 
-resource "azurerm_cosmosdb_sql_database" "sql_database" {
-  name                = var.override_name != "" ? var.override_name : local.name
+resource "azurerm_cosmosdb_sql_database" "cosmosdb_sql_database" {
+  name                = local.name
   resource_group_name = var.resource_group.name
-  account_name        = var.cosmosdb_account.name
+
+  account_name = var.cosmosdb_account.name
 
   # (Optional) The throughput of SQL database (RU/s). Must be set in increments of 100.
   # The minimum value is 400.
