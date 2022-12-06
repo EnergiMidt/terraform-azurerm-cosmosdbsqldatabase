@@ -1,7 +1,7 @@
 locals {
   name = var.override_name == null ? "${var.system_name}-${lower(var.environment)}-sqldb" : var.override_name
 
-  cosmosdb_sql_database = concat(azurerm_cosmosdb_sql_database.cosmosdb_sql_database.*, [null])[0]
+  cosmosdb_sql_database = concat(azurerm_cosmosdb_sql_database.cosmosdb_sql_database[*], [null])[0]
   enable_serverless     = contains(var.cosmosdb_account.capabilities[*].name, "EnableServerless")
 }
 
